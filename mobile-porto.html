@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,7 +104,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
         }
@@ -215,29 +216,66 @@
             position: relative;
         }
 
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            z-index: 10;
+        }
+
         .phone-screen {
             width: 100%;
             height: 100%;
             background: var(--gradient-dark);
             border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--accent-purple);
             border: 2px solid rgba(139, 92, 246, 0.2);
+            overflow: hidden;
+            position: relative;
         }
 
-        .screen-content {
-            text-align: center;
-            padding: 1rem;
+        .screen-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .app-screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .screen-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px 15px 15px;
+            color: white;
+            border-radius: 0 0 18px 18px;
         }
 
         .screen-title {
             font-size: 1rem;
-            margin-top: 1rem;
-            color: var(--text-gray);
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 4px;
+        }
+
+        .screen-subtitle {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
         }
 
         .video-container {
@@ -252,13 +290,37 @@
             align-items: center;
             justify-content: center;
             color: var(--text-gray);
-            font-size: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            background: linear-gradient(45deg, transparent 40%, rgba(139, 92, 246, 0.05) 50%, transparent 60%);
+            border-radius: 10px;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         .video-placeholder-text {
-            font-size: 1rem;
+            font-size: 1.2rem;
             margin-top: 1rem;
-            opacity: 0.8;
+            font-weight: 600;
+            z-index: 2;
+            position: relative;
         }
 
         .slider-controls {
@@ -470,6 +532,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -486,16 +549,16 @@
     <section class="header">
         <div class="container">
             <div class="header-content">
-                <h1>E-Commerce Mobile App</h1>
-                <p class="subtitle">Modern Shopping Experience dengan Flutter & Material Design</p>
+                <h1>JosGandos - Food Delivery App</h1>
+                <p class="subtitle">Aplikasi Pesan Makanan dengan UI/UX yang Modern dan Intuitif</p>
                 <div class="tech-stack">
-                    <span class="tech-tag">Flutter</span>
-                    <span class="tech-tag">Dart</span>
+                    <span class="tech-tag">Android</span>
+                    <span class="tech-tag">Java</span>
                     <span class="tech-tag">Material Design</span>
                     <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">Google Maps API</span>
                     <span class="tech-tag">REST API</span>
-                    <span class="tech-tag">State Management</span>
-                    <span class="tech-tag">Figma</span>
+                    <span class="tech-tag">SQLite</span>
                 </div>
             </div>
         </div>
@@ -511,17 +574,23 @@
                         <div class="mobile-mockup">
                             <div class="phone-frame">
                                 <div class="phone-screen">
-                                    <div class="screen-content">
-                                        🏪
+                                    <img src="gambar/homejosgandos.png" alt="JosGandos Home Screen"
+                                        class="app-screenshot"
+                                        style="background: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 375 812&quot;><rect width=&quot;375&quot; height=&quot;812&quot; fill=&quot;%23f8f9fa&quot;/><rect x=&quot;20&quot; y=&quot;60&quot; width=&quot;120&quot; height=&quot;30&quot; fill=&quot;%23000&quot; rx=&quot;4&quot;/><rect x=&quot;280&quot; y=&quot;60&quot; width=&quot;40&quot; height=&quot;30&quot; fill=&quot;%235394fd&quot; rx=&quot;8&quot;/><rect x=&quot;20&quot; y=&quot;120&quot; width=&quot;335&quot; height=&quot;40&quot; fill=&quot;%23e9ecef&quot; rx=&quot;20&quot;/><text x=&quot;50&quot; y=&quot;145&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>Cari Makanan...</text><text x=&quot;20&quot; y=&quot;200&quot; fill=&quot;%23000&quot; font-size=&quot;20&quot; font-weight=&quot;bold&quot;>Tempat Makan Terdekat</text><rect x=&quot;20&quot; y=&quot;220&quot; width=&quot;160&quot; height=&quot;120&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;100&quot; cy=&quot;260&quot; r=&quot;25&quot; fill=&quot;%2300704A&quot;/><text x=&quot;100&quot; y=&quot;265&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;10&quot;>S</text><text x=&quot;20&quot; y=&quot;360&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Starbuck Borobudur</text><rect x=&quot;195&quot; y=&quot;220&quot; width=&quot;160&quot; height=&quot;120&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><text x=&quot;275&quot; y=&quot;270&quot; text-anchor=&quot;middle&quot; fill=&quot;%23000&quot; font-size=&quot;14&quot;>🍽️</text><text x=&quot;195&quot; y=&quot;360&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Cafe ABC</text><text x=&quot;20&quot; y=&quot;400&quot; fill=&quot;%23000&quot; font-size=&quot;20&quot; font-weight=&quot;bold&quot;>Rekomendasi Makanan</text><rect x=&quot;20&quot; y=&quot;420&quot; width=&quot;335&quot; height=&quot;100&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;70&quot; cy=&quot;470&quot; r=&quot;30&quot; fill=&quot;%23fd7e14&quot;/><text x=&quot;120&quot; y=&quot;455&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Bubur Ayam ...</text><text x=&quot;120&quot; y=&quot;475&quot; fill=&quot;%23868e96&quot; font-size=&quot;12&quot;>Porridge, Rice, Chicken</text><text x=&quot;120&quot; y=&quot;495&quot; fill=&quot;%235394fd&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Rp 10000</text><rect x=&quot;290&quot; y=&quot;435&quot; width=&quot;20&quot; height=&quot;15&quot; fill=&quot;%23fd7e14&quot; rx=&quot;8&quot;/><text x=&quot;300&quot; y=&quot;445&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;8&quot;>BS</text></svg>') center/cover;" />
+                                    <div class="screen-overlay">
                                         <div class="screen-title">Home Screen</div>
+                                        <div class="screen-subtitle">Tempat Makan & Rekomendasi</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="phone-frame">
                                 <div class="phone-screen">
-                                    <div class="screen-content">
-                                        📋
-                                        <div class="screen-title">Product List</div>
+                                    <img src="gambar/productjosgandos.png" alt="JosGandos Product List"
+                                        class="app-screenshot"
+                                        style="background: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 375 812&quot;><rect width=&quot;375&quot; height=&quot;812&quot; fill=&quot;%23f8f9fa&quot;/><rect x=&quot;20&quot; y=&quot;60&quot; width=&quot;120&quot; height=&quot;30&quot; fill=&quot;%23000&quot; rx=&quot;4&quot;/><rect x=&quot;280&quot; y=&quot;60&quot; width=&quot;40&quot; height=&quot;30&quot; fill=&quot;%235394fd&quot; rx=&quot;8&quot;/><rect x=&quot;20&quot; y=&quot;120&quot; width=&quot;335&quot; height=&quot;40&quot; fill=&quot;%23e9ecef&quot; rx=&quot;20&quot;/><text x=&quot;50&quot; y=&quot;145&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>Cari Makanan...</text><rect x=&quot;20&quot; y=&quot;180&quot; width=&quot;335&quot; height=&quot;100&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;70&quot; cy=&quot;230&quot; r=&quot;30&quot; fill=&quot;%23fd7e14&quot;/><text x=&quot;120&quot; y=&quot;215&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Bubur Ayam ...</text><text x=&quot;120&quot; y=&quot;235&quot; fill=&quot;%23868e96&quot; font-size=&quot;12&quot;>Porridge, Rice, Chicken</text><text x=&quot;120&quot; y=&quot;255&quot; fill=&quot;%235394fd&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Rp 10000</text><rect x=&quot;290&quot; y=&quot;435&quot; width=&quot;20&quot; height=&quot;15&quot; fill=&quot;%23fd7e14&quot; rx=&quot;8&quot;/><rect x=&quot;20&quot; y=&quot;300&quot; width=&quot;335&quot; height=&quot;100&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><rect x=&quot;40&quot; y=&quot;320&quot; width=&quot;50&quot; height=&quot;60&quot; fill=&quot;%23e9ecef&quot; rx=&quot;8&quot;/><text x=&quot;65&quot; y=&quot;355&quot; text-anchor=&quot;middle&quot; fill=&quot;%23868e96&quot; font-size=&quot;10&quot;>No Image</text><text x=&quot;120&quot; y=&quot;335&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Nasi Goreng Mas Arif</text><text x=&quot;120&quot; y=&quot;355&quot; fill=&quot;%23868e96&quot; font-size=&quot;12&quot;>Fried Rice, Chicken, Spicy</text><text x=&quot;120&quot; y=&quot;375&quot; fill=&quot;%235394fd&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Rp 15000</text><rect x=&quot;20&quot; y=&quot;420&quot; width=&quot;335&quot; height=&quot;100&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;70&quot; cy=&quot;470&quot; r=&quot;30&quot; fill=&quot;%23198754&quot;/><text x=&quot;120&quot; y=&quot;455&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Soto Ayam Lamongan</text><text x=&quot;120&quot; y=&quot;475&quot; fill=&quot;%23868e96&quot; font-size=&quot;12&quot;>Soto, Soup, Chicken</text><text x=&quot;120&quot; y=&quot;495&quot; fill=&quot;%235394fd&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Rp 12000</text></svg>') center/cover;" />
+                                    <div class="screen-overlay">
+                                        <div class="screen-title">Menu List</div>
+                                        <div class="screen-subtitle">Daftar Makanan & Minuman</div>
                                     </div>
                                 </div>
                             </div>
@@ -531,17 +600,21 @@
                         <div class="mobile-mockup">
                             <div class="phone-frame">
                                 <div class="phone-screen">
-                                    <div class="screen-content">
-                                        🛍️
+                                    <img src="gambar/homejosgandos.png" alt="JosGandos Cart" class="app-screenshot"
+                                        style="background: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 375 812&quot;><rect width=&quot;375&quot; height=&quot;812&quot; fill=&quot;%23f8f9fa&quot;/><rect x=&quot;20&quot; y=&quot;60&quot; width=&quot;120&quot; height=&quot;30&quot; fill=&quot;%23000&quot; rx=&quot;4&quot;/><text x=&quot;20&quot; y=&quot;140&quot; fill=&quot;%23000&quot; font-size=&quot;24&quot; font-weight=&quot;bold&quot;>Keranjang Belanja</text><rect x=&quot;20&quot; y=&quot;160&quot; width=&quot;335&quot; height=&quot;80&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;60&quot; cy=&quot;200&quot; r=&quot;20&quot; fill=&quot;%23fd7e14&quot;/><text x=&quot;100&quot; y=&quot;190&quot; fill=&quot;%23000&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot;>Bubur Ayam</text><text x=&quot;100&quot; y=&quot;210&quot; fill=&quot;%235394fd&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot;>Rp 10,000</text><text x=&quot;280&quot; y=&quot;205&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot;>x2</text><rect x=&quot;20&quot; y=&quot;260&quot; width=&quot;335&quot; height=&quot;80&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;60&quot; cy=&quot;300&quot; r=&quot;20&quot; fill=&quot;%23198754&quot;/><text x=&quot;100&quot; y=&quot;290&quot; fill=&quot;%23000&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot;>Soto Ayam</text><text x=&quot;100&quot; y=&quot;310&quot; fill=&quot;%235394fd&quot; font-size=&quot;14&quot; font-weight=&quot;bold&quot;>Rp 12,000</text><text x=&quot;280&quot; y=&quot;305&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot;>x1</text><rect x=&quot;20&quot; y=&quot;370&quot; width=&quot;335&quot; height=&quot;120&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><text x=&quot;40&quot; y=&quot;400&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Ringkasan Pesanan</text><text x=&quot;40&quot; y=&quot;425&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>Subtotal</text><text x=&quot;280&quot; y=&quot;425&quot; fill=&quot;%23000&quot; font-size=&quot;14&quot;>Rp 32,000</text><text x=&quot;40&quot; y=&quot;445&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>Ongkir</text><text x=&quot;290&quot; y=&quot;445&quot; fill=&quot;%23000&quot; font-size=&quot;14&quot;>Rp 5,000</text><line x1=&quot;40&quot; y1=&quot;455&quot; x2=&quot;335&quot; y2=&quot;455&quot; stroke=&quot;%23e9ecef&quot;/><text x=&quot;40&quot; y=&quot;475&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Total</text><text x=&quot;280&quot; y=&quot;475&quot; fill=&quot;%235394fd&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Rp 37,000</text><rect x=&quot;20&quot; y=&quot;520&quot; width=&quot;335&quot; height=&quot;50&quot; fill=&quot;%235394fd&quot; rx=&quot;25&quot;/><text x=&quot;187&quot; y=&quot;550&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Checkout</text></svg>') center/cover;" />
+                                    <div class="screen-overlay">
                                         <div class="screen-title">Shopping Cart</div>
+                                        <div class="screen-subtitle">Keranjang & Total Pesanan</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="phone-frame">
                                 <div class="phone-screen">
-                                    <div class="screen-content">
-                                        💳
-                                        <div class="screen-title">Checkout</div>
+                                    <img src="gambar/homejosgandos.png" alt="JosGandos Profile" class="app-screenshot"
+                                        style="background: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 375 812&quot;><rect width=&quot;375&quot; height=&quot;812&quot; fill=&quot;%23f8f9fa&quot;/><rect x=&quot;20&quot; y=&quot;60&quot; width=&quot;120&quot; height=&quot;30&quot; fill=&quot;%23000&quot; rx=&quot;4&quot;/><text x=&quot;20&quot; y=&quot;140&quot; fill=&quot;%23000&quot; font-size=&quot;24&quot; font-weight=&quot;bold&quot;>Profile</text><rect x=&quot;20&quot; y=&quot;160&quot; width=&quot;335&quot; height=&quot;100&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;70&quot; cy=&quot;210&quot; r=&quot;30&quot; fill=&quot;%235394fd&quot;/><text x=&quot;70&quot; y=&quot;218&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;20&quot; font-weight=&quot;bold&quot;>JD</text><text x=&quot;120&quot; y=&quot;200&quot; fill=&quot;%23000&quot; font-size=&quot;18&quot; font-weight=&quot;bold&quot;>John Doe</text><text x=&quot;120&quot; y=&quot;220&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>john.doe@example.com</text><text x=&quot;120&quot; y=&quot;240&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>+62 812 3456 7890</text><rect x=&quot;20&quot; y=&quot;280&quot; width=&quot;335&quot; height=&quot;60&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><text x=&quot;40&quot; y=&quot;305&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot;>📍 Alamat</text><text x=&quot;40&quot; y=&quot;325&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>Jl. Merdeka No. 123, Jakarta</text><rect x=&quot;20&quot; y=&quot;360&quot; width=&quot;335&quot; height=&quot;60&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><text x=&quot;40&quot; y=&quot;385&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot;>📊 Riwayat Pesanan</text><text x=&quot;40&quot; y=&quot;405&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>25 pesanan selesai</text><rect x=&quot;20&quot; y=&quot;440&quot; width=&quot;335&quot; height=&quot;60&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><text x=&quot;40&quot; y=&quot;465&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot;>⚙️ Pengaturan</text><text x=&quot;40&quot; y=&quot;485&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>Notifikasi, Bahasa, dll</text><rect x=&quot;20&quot; y=&quot;520&quot; width=&quot;335&quot; height=&quot;60&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><text x=&quot;40&quot; y=&quot;545&quot; fill=&quot;%23dc3545&quot; font-size=&quot;16&quot;>🚪 Logout</text><text x=&quot;40&quot; y=&quot;565&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>Keluar dari akun</text></svg>') center/cover;" />
+                                    <div class="screen-overlay">
+                                        <div class="screen-title">User Profile</div>
+                                        <div class="screen-subtitle">Akun & Pengaturan</div>
                                     </div>
                                 </div>
                             </div>
@@ -549,53 +622,89 @@
                     </div>
                     <div class="slide">
                         <div class="video-container">
-                            🎥
-                            <div class="video-placeholder-text">App Interaction Demo Video</div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="mobile-mockup">
-                            <div class="phone-frame">
-                                <div class="phone-screen">
-                                    <div class="screen-content">
-                                        👤
-                                        <div class="screen-title">User Profile</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="phone-frame">
-                                <div class="phone-screen">
-                                    <div class="screen-content">
-                                        📊
-                                        <div class="screen-title">Order History</div>
-                                    </div>
-                                </div>
+                            <div style="font-size: 4rem; color: var(--accent-purple); margin-bottom: 1rem;">🍽️</div>
+                            <div class="video-placeholder-text">JosGandos App Demo</div>
+                            <div style="font-size: 1rem; color: var(--text-gray); margin-top: 1rem; opacity: 0.7;">
+                                Interactive food delivery app walkthrough
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="slider-controls">
-                    <button class="slider-nav" onclick="changeSlide(-1)">
-                        <span>⬅️</span>
-                        Previous
-                    </button>
-                    <span class="slide-indicator">
-                        <span id="currentSlide">1</span> / <span id="totalSlides">4</span>
-                    </span>
-                    <button class="slider-nav" onclick="changeSlide(1)">
-                        Next
-                        <span>➡️</span>
-                    </button>
-                </div>
-                
-                <div class="dots-container">
-                    <span class="dot active" onclick="currentSlideSet(1)"></span>
-                    <span class="dot" onclick="currentSlideSet(2)"></span>
-                    <span class="dot" onclick="currentSlideSet(3)"></span>
-                    <span class="dot" onclick="currentSlideSet(4)"></span>
                 </div>
             </div>
+        </div>
+        </div>
+        </div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div class="screen-placeholder">
+                    <div class="screen-content">
+                        <div class="screen-icon">💳</div>
+                        <div class="screen-title">Secure Checkout</div>
+                        <div class="screen-subtitle">Payment & Delivery</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="slide">
+            <div class="video-container">
+                <div style="font-size: 4rem; color: var(--accent-purple); margin-bottom: 1rem;">📱</div>
+                <div class="video-placeholder-text">Interactive App Demo</div>
+                <div style="font-size: 1rem; color: var(--text-gray); margin-top: 1rem; opacity: 0.7;">
+                    Full app walkthrough and feature demonstration
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="mobile-mockup">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="screen-placeholder">
+                            <div class="screen-content">
+                                <div class="screen-icon">👤</div>
+                                <div class="screen-title">User Profile</div>
+                                <div class="screen-subtitle">Account & Preferences</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="screen-placeholder">
+                            <div class="screen-content">
+                                <div class="screen-icon">📊</div>
+                                <div class="screen-title">Order History</div>
+                                <div class="screen-subtitle">Track Your Purchases</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="slider-controls">
+            <button class="slider-nav" onclick="changeSlide(-1)">
+                <span>⬅️</span>
+                Previous
+            </button>
+            <span class="slide-indicator">
+                <span id="currentSlide">1</span> / <span id="totalSlides">4</span>
+            </span>
+            <button class="slider-nav" onclick="changeSlide(1)">
+                Next
+                <span>➡️</span>
+            </button>
+        </div>
+
+        <div class="dots-container">
+            <span class="dot active" onclick="currentSlideSet(1)"></span>
+            <span class="dot" onclick="currentSlideSet(2)"></span>
+            <span class="dot" onclick="currentSlideSet(3)"></span>
+            <span class="dot" onclick="currentSlideSet(4)"></span>
+        </div>
+        </div>
         </div>
     </section>
 
@@ -606,40 +715,50 @@
             <div class="description-grid">
                 <div class="description-card">
                     <h3>🎯 Project Overview</h3>
-                    <p>Aplikasi e-commerce mobile yang dirancang dengan fokus pada user experience dan conversion optimization. Menggunakan Flutter untuk cross-platform development dengan Material Design guidelines.</p>
+                    <p>JosGandos adalah aplikasi food delivery yang dirancang untuk memberikan pengalaman pemesanan
+                        makanan yang mudah dan intuitif. Aplikasi ini memungkinkan pengguna untuk mencari restoran
+                        terdekat, melihat menu, dan memesan makanan dengan cepat.</p>
                 </div>
-                
+
                 <div class="description-card">
                     <h3>✨ Key Features</h3>
                     <ul class="features-list">
-                        <li>Product catalog with search & filter</li>
-                        <li>Shopping cart & wishlist</li>
-                        <li>Secure payment integration</li>
-                        <li>User authentication & profile</li>
-                        <li>Order tracking & history</li>
-                        <li>Push notifications</li>
-                        <li>Offline capability</li>
+                        <li>Pencarian restoran dan tempat makan terdekat</li>
+                        <li>Katalog menu dengan gambar dan deskripsi</li>
+                        <li>Shopping cart dan sistem pemesanan</li>
+                        <li>Tracking lokasi dan estimasi waktu</li>
+                        <li>User profile dan riwayat pesanan</li>
+                        <li>Rating dan review sistem</li>
+                        <li>Multiple payment methods</li>
                     </ul>
                 </div>
-                
+
                 <div class="description-card">
                     <h3>🛠️ Technical Architecture</h3>
-                    <p>Menggunakan Flutter dengan state management menggunakan Provider/Bloc pattern. Backend integration melalui REST API dengan Firebase untuk authentication dan real-time features. Local storage dengan SQLite untuk offline functionality.</p>
+                    <p>Aplikasi dikembangkan menggunakan native Android dengan Java/Kotlin. Menggunakan Google Maps API
+                        untuk lokasi, Firebase untuk real-time data dan authentication, serta REST API untuk komunikasi
+                        dengan backend server.</p>
                 </div>
-                
+
                 <div class="description-card">
                     <h3>🎨 UI/UX Design</h3>
-                    <p>Design mengikuti Material Design 3 guidelines dengan custom theme dan branding. Prototyping dilakukan menggunakan Figma dengan focus pada user flow optimization dan accessibility standards.</p>
+                    <p>Design menggunakan Material Design principles dengan custom branding JosGandos. Interface
+                        dirancang clean dan user-friendly dengan fokus pada kemudahan navigasi dan visual hierarchy yang
+                        jelas untuk meningkatkan user experience.</p>
                 </div>
-                
+
                 <div class="description-card">
                     <h3>🚀 Performance & Optimization</h3>
-                    <p>Aplikasi dioptimasi untuk performa dengan lazy loading, image caching, dan efficient state management. Testing dilakukan untuk memastikan smooth performance pada berbagai device specifications.</p>
+                    <p>Aplikasi dioptimasi untuk performa dengan image caching, lazy loading untuk menu items, dan
+                        efficient data management. Offline capability untuk menyimpan data favorit dan riwayat pesanan
+                        pengguna.</p>
                 </div>
-                
+
                 <div class="description-card">
                     <h3>🔐 Security & Integration</h3>
-                    <p>Implementasi security best practices dengan secure API communication, data encryption, dan payment gateway integration. Support untuk berbagai metode pembayaran dan shipping providers.</p>
+                    <p>Implementasi secure payment gateway integration, data encryption untuk informasi sensitif
+                        pengguna, dan real-time order tracking dengan push notifications untuk update status pesanan.
+                    </p>
                 </div>
             </div>
         </div>
@@ -655,12 +774,12 @@
                     Download APK
                 </a>
                 <a href="#" class="project-link secondary">
-                    <span>📄</span>
+                    <span>💻</span>
                     Source Code
                 </a>
                 <a href="#" class="project-link secondary">
-                    <span>🎨</span>
-                    Figma Design
+                    <span>📊</span>
+                    Live Demo
                 </a>
             </div>
         </div>
@@ -685,26 +804,26 @@
             slides.forEach(slide => {
                 slide.classList.remove('active');
             });
-            
+
             dots.forEach(dot => {
                 dot.classList.remove('active');
             });
-            
+
             slides[index].classList.add('active');
             dots[index].classList.add('active');
-            
+
             document.getElementById('currentSlide').textContent = index + 1;
         }
 
         function changeSlide(direction) {
             currentSlideIndex += direction;
-            
+
             if (currentSlideIndex >= totalSlides) {
                 currentSlideIndex = 0;
             } else if (currentSlideIndex < 0) {
                 currentSlideIndex = totalSlides - 1;
             }
-            
+
             showSlide(currentSlideIndex);
         }
 
@@ -743,7 +862,7 @@
         function handleSwipe() {
             const threshold = 50;
             const diff = startX - endX;
-            
+
             if (Math.abs(diff) > threshold) {
                 if (diff > 0) {
                     changeSlide(1);
@@ -763,4 +882,5 @@
         });
     </script>
 </body>
+
 </html>
