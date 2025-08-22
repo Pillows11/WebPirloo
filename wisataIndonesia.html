@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Detail - Mobile App | Ahmad Rizki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a2e;
+            --tertiary-bg: #16213e;
+            --accent-purple: #8b5cf6;
+            --accent-purple-light: #a78bfa;
+            --accent-purple-dark: #7c3aed;
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            --text-dark-gray: #71717a;
+            --gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --gradient-glow: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-white);
+            background: var(--primary-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .back-btn:hover {
+            color: var(--text-white);
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        /* Header Section */
+        .header {
+            padding: 120px 0 60px;
+            background: var(--gradient-dark);
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-white) 0%, var(--accent-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-tag {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--accent-purple-light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-white) 0%, var(--accent-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .video-container {
+            background: var(--gradient-glow);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            position: relative;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .video-controls {
+            padding: 1.5rem;
+            background: rgba(139, 92, 246, 0.05);
+            text-align: center;
+        }
+
+        .video-title {
+            color: var(--text-white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-description {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Custom video controls */
+        .custom-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: var(--gradient-purple);
+            color: var(--text-white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(139, 92, 246, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+            cursor: pointer;
+        }
+
+        /* Placeholder for when video is not available */
+        .video-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            background: var(--gradient-dark);
+            color: var(--text-gray);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .video-placeholder .placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .video-placeholder .placeholder-text {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-placeholder .placeholder-subtext {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Description Section */
+        .description-section {
+            padding: 60px 0;
+            background: var(--secondary-bg);
+        }
+
+        .description-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .description-card {
+            background: var(--gradient-glow);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .description-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .description-card h3 {
+            color: var(--accent-purple-light);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .description-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Features List */
+        .features-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features-list li {
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list li::before {
+            content: '📱';
+            font-size: 1rem;
+        }
+
+        /* Project Links */
+        .project-links {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            background: var(--gradient-purple);
+            color: var(--text-white);
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .project-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+        }
+
+        .project-link.secondary {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .project-link.secondary:hover {
+            background: var(--accent-purple);
+            color: var(--text-white);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-bg);
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer p {
+            color: var(--text-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .video-wrapper {
+                padding-bottom: 75%;
+                /* More square ratio for mobile */
+            }
+
+            .custom-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .description-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .links-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tech-stack {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">PIRLO</div>
+            <a href="index.html" class="back-btn">
+                <span>⬅️</span>
+                Back to Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Pesona Indonesia</h1>
+                <p class="subtitle">Website interactive yang menampilkan berbagai destinasi wisata di Indonesia dengan
+                    informasi lengkap dan menarik. serta pesan tiket secara online</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">App Demo Video</h2>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <!-- Replace with your actual video file -->
+                    <source src="video/rectbnoto19 - Made with Clipchamp.mp4" type="video/mp4">
+                    <!-- Fallback for browsers that don't support video -->
+                    <div class="video-placeholder">
+                        <div class="placeholder-icon">🎥</div>
+                        <div class="placeholder-text">Video tidak dapat diputar</div>
+                        <div class="placeholder-subtext">Browser Anda tidak mendukung video HTML5</div>
+                    </div>
+                    </video>
+                </div>
+
+                <div class="video-controls">
+                    <div class="video-title">E-Commerce App Interactive Demo</div>
+                    <div class="video-description">Demonstrasi fitur lengkap aplikasi dari login hingga checkout</div>
+
+                    <div class="custom-controls">
+                        <button class="control-btn" onclick="togglePlayPause()">
+                            <span id="playIcon">▶️</span>
+                            <span id="playText">Play</span>
+                        </button>
+
+                        <button class="control-btn" onclick="toggleMute()">
+                            <span id="muteIcon">🔊</span>
+                            <span id="muteText">Sound</span>
+                        </button>
+
+                        <div class="volume-control">
+                            <span>🔉</span>
+                            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1"
+                                value="1" onchange="changeVolume()">
+                        </div>
+
+                        <button class="control-btn" onclick="toggleFullscreen()">
+                            <span>⛶</span>
+                            Fullscreen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Andrea Pirlo Saputra. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const video = document.getElementById('demoVideo');
+        const playIcon = document.getElementById('playIcon');
+        const playText = document.getElementById('playText');
+        const muteIcon = document.getElementById('muteIcon');
+        const muteText = document.getElementById('muteText');
+        const volumeSlider = document.getElementById('volumeSlider');
+
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play();
+                playIcon.textContent = '⏸️';
+                playText.textContent = 'Pause';
+            } else {
+                video.pause();
+                playIcon.textContent = '▶️';
+                playText.textContent = 'Play';
+            }
+        }
+
+        function toggleMute() {
+            if (video.muted) {
+                video.muted = false;
+                muteIcon.textContent = '🔊';
+                muteText.textContent = 'Sound';
+                volumeSlider.value = video.volume;
+            } else {
+                video.muted = true;
+                muteIcon.textContent = '🔇';
+                muteText.textContent = 'Muted';
+            }
+        }
+
+        function changeVolume() {
+            video.volume = volumeSlider.value;
+            video.muted = false;
+
+            if (video.volume === 0) {
+                muteIcon.textContent = '🔇';
+                muteText.textContent = 'Muted';
+            } else {
+                muteIcon.textContent = '🔊';
+                muteText.textContent = 'Sound';
+            }
+        }
+
+        function toggleFullscreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.mozRequestFullScreen) {
+                video.mozRequestFullScreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        }
+
+        // Video event listeners
+        video.addEventListener('ended', () => {
+            playIcon.textContent = '▶️';
+            playText.textContent = 'Play';
+        });
+
+        video.addEventListener('loadstart', () => {
+            console.log('Video loading started');
+        });
+
+        video.addEventListener('error', (e) => {
+            console.log('Video error:', e);
+            // Show placeholder if video fails to load
+            const videoWrapper = document.querySelector('.video-wrapper');
+            videoWrapper.innerHTML = `
+                <div class="video-placeholder">
+                    <div class="placeholder-icon">🎥</div>
+                    <div class="placeholder-text">Video tidak dapat dimuat</div>
+                    <div class="placeholder-subtext">Silakan periksa path file video Anda</div>
+                </div>
+            `;
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName.toLowerCase() !== 'input') {
+                switch (e.code) {
+                    case 'Space':
+                        e.preventDefault();
+                        togglePlayPause();
+                        break;
+                    case 'KeyM':
+                        toggleMute();
+                        break;
+                    case 'KeyF':
+                        toggleFullscreen();
+                        break;
+                }
+            }
+        });
+
+        // Smooth fade in animation on load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
