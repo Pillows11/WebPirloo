@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Detail - Mobile App | Ahmad Rizki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a2e;
+            --tertiary-bg: #16213e;
+            --accent-purple: #8b5cf6;
+            --accent-purple-light: #a78bfa;
+            --accent-purple-dark: #7c3aed;
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            --text-dark-gray: #71717a;
+            --gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --gradient-glow: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-white);
+            background: var(--primary-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .back-btn:hover {
+            color: var(--text-white);
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        /* Header Section */
+        .header {
+            padding: 120px 0 60px;
+            background: var(--gradient-dark);
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-white) 0%, var(--accent-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-tag {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--accent-purple-light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        /* Media Gallery */
+        .media-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-white) 0%, var(--accent-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .phone-frame {
+            background: var(--gradient-glow);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            height: fit-content;
+        }
+
+        .phone-frame:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 280px;
+            height: 500px;
+            background: var(--primary-bg);
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            z-index: 10;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-dark);
+            border-radius: 20px;
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .screen-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-dark);
+            border-radius: 18px;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .screen-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .screen-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .screen-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .screen-info {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0 1rem;
+        }
+
+        .screen-info h3 {
+            color: var(--accent-purple-light);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .screen-info p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .video-demo {
+            background: var(--gradient-glow);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .video-demo-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-demo-icon {
+            font-size: 4rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+
+        .video-demo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-demo-subtitle {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* Description Section */
+        .description-section {
+            padding: 60px 0;
+            background: var(--secondary-bg);
+        }
+
+        .description-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .description-card {
+            background: var(--gradient-glow);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .description-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .description-card h3 {
+            color: var(--accent-purple-light);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .description-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Features List */
+        .features-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features-list li {
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list li::before {
+            content: '📱';
+            font-size: 1rem;
+        }
+
+        /* Project Links */
+        .project-links {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            background: var(--gradient-purple);
+            color: var(--text-white);
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .project-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+        }
+
+        .project-link.secondary {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .project-link.secondary:hover {
+            background: var(--accent-purple);
+            color: var(--text-white);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-bg);
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center;
+            padding: 2rem 0;
+            clear: both;
+            width: 100%;
+        }
+
+        .footer p {
+            color: var(--text-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .phone-mockup {
+                max-width: 250px;
+                height: 450px;
+            }
+
+            .description-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .links-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tech-stack {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .phone-mockup {
+                max-width: 220px;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">PIRLO</div>
+            <a href="index.html" class="back-btn">
+                <span>⬅</span>
+                Back to Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Hit API</h1>
+                <p class="subtitle">Project lama yang menggunakan API untuk mengambil data dan menampilkannya di halaman
+                    aplikasi berbasis Flutter</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">Dart</span>
+                    <span class="tech-tag">API</span>
+                    <span class="tech-tag">SportDB</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Gallery -->
+    <section class="media-section">
+        <div class="container">
+            <h2 class="section-title">App Screenshots</h2>
+            <div class="screenshots-grid">
+                <div class="phone-frame">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <img src="gambar/apilearn.jpg" alt="JosGandos Home Screen" class="screen-image"
+                                style="background: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 375 812&quot;><rect width=&quot;375&quot; height=&quot;812&quot; fill=&quot;%23f8f9fa&quot;/><rect x=&quot;20&quot; y=&quot;60&quot; width=&quot;120&quot; height=&quot;30&quot; fill=&quot;%23000&quot; rx=&quot;4&quot;/><rect x=&quot;280&quot; y=&quot;60&quot; width=&quot;40&quot; height=&quot;30&quot; fill=&quot;%235394fd&quot; rx=&quot;8&quot;/><rect x=&quot;20&quot; y=&quot;120&quot; width=&quot;335&quot; height=&quot;40&quot; fill=&quot;%23e9ecef&quot; rx=&quot;20&quot;/><text x=&quot;50&quot; y=&quot;145&quot; fill=&quot;%23868e96&quot; font-size=&quot;14&quot;>Cari Makanan...</text><text x=&quot;20&quot; y=&quot;200&quot; fill=&quot;%23000&quot; font-size=&quot;20&quot; font-weight=&quot;bold&quot;>Tempat Makan Terdekat</text><rect x=&quot;20&quot; y=&quot;220&quot; width=&quot;160&quot; height=&quot;120&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;100&quot; cy=&quot;260&quot; r=&quot;25&quot; fill=&quot;%2300704A&quot;/><text x=&quot;100&quot; y=&quot;265&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;10&quot;>S</text><text x=&quot;20&quot; y=&quot;360&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Starbuck Borobudur</text><rect x=&quot;195&quot; y=&quot;220&quot; width=&quot;160&quot; height=&quot;120&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><text x=&quot;275&quot; y=&quot;270&quot; text-anchor=&quot;middle&quot; fill=&quot;%23000&quot; font-size=&quot;14&quot;>🍽️</text><text x=&quot;195&quot; y=&quot;360&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Cafe ABC</text><text x=&quot;20&quot; y=&quot;400&quot; fill=&quot;%23000&quot; font-size=&quot;20&quot; font-weight=&quot;bold&quot;>Rekomendasi Makanan</text><rect x=&quot;20&quot; y=&quot;420&quot; width=&quot;335&quot; height=&quot;100&quot; fill=&quot;%23fff&quot; rx=&quot;12&quot; stroke=&quot;%23e9ecef&quot;/><circle cx=&quot;70&quot; cy=&quot;470&quot; r=&quot;30&quot; fill=&quot;%23fd7e14&quot;/><text x=&quot;120&quot; y=&quot;455&quot; fill=&quot;%23000&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Bubur Ayam ...</text><text x=&quot;120&quot; y=&quot;475&quot; fill=&quot;%23868e96&quot; font-size=&quot;12&quot;>Porridge, Rice, Chicken</text><text x=&quot;120&quot; y=&quot;495&quot; fill=&quot;%235394fd&quot; font-size=&quot;16&quot; font-weight=&quot;bold&quot;>Rp 10000</text><rect x=&quot;290&quot; y=&quot;435&quot; width=&quot;20&quot; height=&quot;15&quot; fill=&quot;%23fd7e14&quot; rx=&quot;8&quot;/><text x=&quot;300&quot; y=&quot;445&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;8&quot;>BS</text></svg>') center/cover;" />
+                        </div>
+                    </div>
+                    <div class="screen-info">
+                        <h3>Home</h3>
+                        <p>Halaman utama yang menampilkan daftar club sepak bola yang diambil dari API.</p>
+                    </div>
+                </div>
